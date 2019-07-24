@@ -64,6 +64,7 @@ export class WalletDetailsPage extends WalletTabsChild {
   public txps = [];
   public txpsPending: any[];
   public lowUtxosWarning: boolean;
+  public walletBalanceAmount: string;
 
   public supportedCards: Promise<CardConfigMap>;
 
@@ -94,10 +95,12 @@ export class WalletDetailsPage extends WalletTabsChild {
     if (this.navParams.data.clearCache) {
       this.clearHistoryCache();
     } else {
+    
       if (this.wallet.completeHistory) this.showHistory();
     }
 
     this.requiresMultipleSignatures = this.wallet.credentials.m > 1;
+    this.walletBalanceAmount = this.wallet.lastKnownBalance.split(" ")[0];
     this.supportedCards = this.giftCardProvider.getSupportedCardMap();
 
     this.addressbookProvider

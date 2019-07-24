@@ -13,6 +13,7 @@ page-wallet-details {
     }
 
     .refresher-refreshing {
+
       .spinner-crescent circle,
       .spinner-ios line {
         stroke: white;
@@ -35,7 +36,7 @@ page-wallet-details {
 
   .balance-card {
     // background: color($colors, primary);
-    background: linear-gradient(180deg, #14245e -0%, #22378c);
+    background: linear-gradient(90deg, #22378c -15%, #14245e);
     overflow: hidden;
   }
 
@@ -52,6 +53,7 @@ page-wallet-details {
   }
 
   .balance-str {
+    color: black;
     cursor: pointer;
     font-size: 32px;
     font-weight: 600;
@@ -79,6 +81,7 @@ page-wallet-details {
       font-weight: 500;
     }
   }
+
 
   .balance-error {
     width: 100vw;
@@ -237,6 +240,13 @@ page-wallet-details {
     text-align: center;
   }
 
+  .wallet-title {
+    display: flex;
+    font-size: 18px;
+    font-weight: bold;
+    align-self: flex-start;
+  }
+
   .wallet-info {
     font-weight: 400;
     color: color($colors, light);
@@ -351,19 +361,65 @@ page-wallet-details {
     font-size: 12.5px;
   }
 
+  .card-container {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .balance-superscript {
+    columns: #A7ABB3;
+    font-weight: normal;
+    font-size: 12px;
+    position: relative;
+    top: -13px;
+  }
+
   .white-card {
     background: white;
     padding: 3rem 2rem;
     border-radius: 5px;
   }
 
+  .white-card-header {
+    background: white;
+    padding: 3rem 2rem;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+  }
+
+  .white-card-footer {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    background: #fafafa;
+    padding: 3rem 2rem;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+  }
+
+  .wallet-amount-container {
+    display: flex;
+    flex: 1;
+    justify-content: flex-start;
+  }
+
+  .asset-sticker-container {
+    display: flex;
+    flex: 1;
+    justify-content: flex-end;
+    position: relative;
+    top: -3px;
+  }
+
   .top-notification {
     cursor: pointer;
     position: absolute;
     top: 0;
+
     &.warning {
       color: color($colors, warning);
     }
+
     ion-icon {
       vertical-align: middle;
       margin-left: 5px;

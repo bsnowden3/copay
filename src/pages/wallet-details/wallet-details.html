@@ -5,7 +5,9 @@
         <ion-icon ios="md-close" md="md-close"></ion-icon>
       </button>
     </ion-buttons>
-    <ion-title left>{{wallet.name}}</ion-title>
+    <ion-buttons right>
+      <img [ngStyle]="{'margin-top': '10px', 'margin-right': '8px'}" src="assets/img/qr-button.svg" />
+    </ion-buttons>
   </ion-navbar>
 </ion-header>
 
@@ -31,7 +33,7 @@
           </a>
         </div>
 
-        <div (longPress)="toggleBalance()">
+        <!-- <div (longPress)="toggleBalance()">
           <div (tap)="updateAll(true)" *ngIf="!wallet.balanceHidden && !wallet.scanning && !walletNotRegistered && (wallet.cachedStatus || wallet.lastKnownBalance)">
             <div class="balance-str">
               {{ wallet.cachedStatus ? wallet.cachedStatus.totalBalanceStr  : wallet.lastKnownBalance }} </div>
@@ -50,7 +52,7 @@
               Tap and hold to show
             </div>
           </div>
-        </div>
+        </div> -->
 
         <div class="balance-scanning" *ngIf="!updateStatusError && wallet.scanning">
           <span class="title" translate>[Scanning Funds]</span>
@@ -59,7 +61,7 @@
           </div>
         </div>
 
-        <div class="balance-spendable" (click)="openBalanceDetails()" *ngIf="!wallet.balanceHidden && !wallet.scanning && !updateStatusError && showBalanceButton">
+        <!-- <div class="balance-spendable" (click)="openBalanceDetails()" *ngIf="!wallet.balanceHidden && !wallet.scanning && !updateStatusError && showBalanceButton">
           <ion-icon ios="ios-timer-outline" md="md-timer"></ion-icon>
           <strong>
             {{wallet.cachedStatus.spendableBalanceStr}}
@@ -69,6 +71,10 @@
             ({{wallet.cachedStatus.spendableBalanceAlternative}} {{wallet.cachedStatus.alternativeIsoCode}})
           </span>
           &rarr;
+        </div> -->
+
+        <div class="wallet-title">
+          {{wallet.name}}
         </div>
 
         <div class="balance-error" *ngIf="updateStatusError">
@@ -84,7 +90,7 @@
           </div>
         </div>
       </expandable-header-primary>
-      <expandable-header-footer class="wallet-info" *ngIf="wallet" style="display: flex; align-items: center">
+      <!-- <expandable-header-footer class="wallet-info" *ngIf="wallet" style="display: flex; align-items: center">
 
         <div class="left-buttons">
           <img class="testnet" *ngIf="wallet.network == 'testnet'" src="assets/img/icon-wallet-testnet.svg">
@@ -105,12 +111,12 @@
         </button>
         <ion-spinner name="crescent" *ngIf="shouldShowSpinner()"></ion-spinner>
 
-      </expandable-header-footer>
+      </expandable-header-footer> -->
 
     </expandable-header>
 
-    <div class="fix-margin"> 
-      <div class="history-wrapper"> 
+    <div class="fix-margin">
+      <div class="history-wrapper">
 
         <ion-list *ngIf="wallet && wallet.isComplete() && !walletNotRegistered && txps && txps[0]" class="tx-history">
           <ion-item-divider *ngIf="wallet.incorrectDerivation">
@@ -139,9 +145,28 @@
         </ion-list>
 
         <!-- Transactions -->
+        <div class="card-container">
+          <div class="activity-fix white-card-header card-container">
+            <span class="balance-str">
+              0.00
+              <span class="balance-superscript">
+                {{wallet.coin | uppercase }}
+              </span>
+            </span>
+          </div>
+          <div class="activity-fix white-card-footer">
+            <div class="wallet-amount-container">
+              <span [ngStyle]="{'color': '#4A4A4A', 'font-size': '16px', 'font-weight': 'bold'}">
+                ${{wallet.cachedStatus.spendableBalanceAlternative}} {{wallet.cachedStatus.alternativeIsoCode}}
+              </span>
+            </div>
+            <div class="asset-sticker-container">
+              <img src="assets/img/{{wallet.coin}}-asset-sticker.svg" />
+            </div>
+          </div>
+        </div>
 
-
-        <div class="prompt-user activity-fix white-card" *ngIf="shouldShowZeroState()">
+        <!-- <div class="prompt-user activity-fix white-card" *ngIf="shouldShowZeroState()">
           <div class="title-icon larger-icon">
             <img src="assets/img/ghost-tongue-out.svg" />
           </div>
@@ -153,7 +178,7 @@
               If you have funds stored on a website then you should move them into a secure wallet... like this one!
             </span>
           </div>
-        </div>
+        </div> -->
 
         <div class="middle-message white-card" *ngIf="updateTxHistoryError" translate>
           Could not update transaction history
