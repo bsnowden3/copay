@@ -130,6 +130,7 @@ page-wallet-details {
   .tx-history {
     .tx-history-header {
       height: 5rem;
+      background-color: white;
       border-bottom: 0;
       border-radius: 5px 5px 0 0;
 
@@ -208,10 +209,11 @@ page-wallet-details {
     }
 
     .amount {
-      color: color($colors, dark);
+      color: $text-color;
+      font-weight: bold;
 
       .received {
-        color: color($colors, success);
+        color: $text-color;
       }
     }
 
@@ -375,6 +377,7 @@ page-wallet-details {
   }
 
   .white-card {
+    margin-top: 20px;
     background: white;
     padding: 3rem 2rem;
     border-radius: 5px;
@@ -390,8 +393,8 @@ page-wallet-details {
   .white-card-footer {
     display: flex;
     flex-direction: row;
-    justify-content: center;
-    background: #fafafa;
+    align-items: center;
+    background: $feather;
     padding: 3rem 2rem;
     border-bottom-left-radius: 5px;
     border-bottom-right-radius: 5px;

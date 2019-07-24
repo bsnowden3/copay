@@ -92,6 +92,7 @@ export class WalletDetailsPage extends WalletTabsChild {
 
   ionViewDidLoad() {
     // Getting info from cache
+    console.log("Wallet data: ", this.wallet);
     if (this.navParams.data.clearCache) {
       this.clearHistoryCache();
     } else {
@@ -181,6 +182,7 @@ export class WalletDetailsPage extends WalletTabsChild {
     );
     this.zone.run(() => {
       this.groupedHistory = this.groupHistory(this.history);
+      console.log("Grouped History: ", this.groupedHistory);
     });
     if (loading) this.currentPage++;
   }
