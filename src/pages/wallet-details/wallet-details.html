@@ -106,11 +106,10 @@
         <ion-spinner name="crescent" *ngIf="shouldShowSpinner()"></ion-spinner>
 
       </expandable-header-footer>
-
     </expandable-header>
 
-    <div class="fix-margin"> 
-      <div class="history-wrapper"> 
+    <div class="fix-margin">
+      <div class="history-wrapper">
 
         <ion-list *ngIf="wallet && wallet.isComplete() && !walletNotRegistered && txps && txps[0]" class="tx-history">
           <ion-item-divider *ngIf="wallet.incorrectDerivation">
@@ -139,7 +138,6 @@
         </ion-list>
 
         <!-- Transactions -->
-
 
         <div class="prompt-user activity-fix white-card" *ngIf="shouldShowZeroState()">
           <div class="title-icon larger-icon">

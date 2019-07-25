@@ -2,81 +2,147 @@ page-tx-details {
   $item-border-color: #efefef;
   $item-lateral-padding: 20px;
   $item-label-color: #6c6c6e;
+
   .header-container {
     padding: 20px 0px 20px 0px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
     .sending-label {
       display: flex;
-      align-items: center;
+      flex: 1;
+      justify-content: flex-start;
+
       img.sending-img {
         margin-right: 2rem;
         width: 40px;
         height: 40px;
       }
+
       span {
-        font-size: 1.8rem;
+        font-size: 3rem;
       }
     }
+
     .amount-label {
       padding-top: 1rem;
+
       img.sending-img {
         width: auto;
         height: 40px;
       }
+
       .amount {
         display: flex;
+        flex: 1;
         font-size: 3.5rem;
-        justify-content: space-between;
+        justify-content: flex-end;
         font-size: 3.5rem;
+
         .amount-coin {
           font-size: 1.5rem;
           margin-top: 0.35rem;
           margin-left: 0.8rem;
         }
+
         div {
           display: flex;
         }
       }
+
       .alternative {
+        display: flex;
+        flex: 1;
+        justify-content: flex-end;
         margin-top: 0.5rem;
         color: color($colors, light-grey);
       }
     }
   }
+
+  .amount-c {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    font-size: 3.0rem;
+    justify-content: flex-start;
+    font-weight: bold;
+  }
+
+  .alternative-c {
+    font-size: 1.5rem;
+    font-weight: normal;
+  }
+
+  .amount-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+  }
+
   @mixin row-flex {
     display: flex;
     align-items: center;
     margin-top: 1rem;
+    flex: 1;
   }
+
+
   .container-to,
   .container-from,
   .container-tx-info {
+
+    .test-container {
+      display: flex;
+      flex-direction: row;
+    }
+
+    .info-label {
+      display: flex;
+      flex-direction: row;
+      justify-content: flex-start;
+      align-items: center;
+      flex: 1;
+    }
+
     .wallet,
     .tx-info {
-      @include row-flex;
+      display: flex;
+      flex-direction: row;
+      justify-content: flex-end;
+      flex: 1;
+
       .comment {
         color: color($colors, light-grey);
       }
+
       .id {
         font-size: 12.5px;
         color: color($colors, light-grey);
       }
     }
   }
+
   .unconfirmed-message {
     padding: 10px 10px 10px 16px;
     font-size: 1.6rem;
   }
+
   .timeline-item {
     background-color: color($colors, blank);
     border: 0;
     padding: 17px $item-lateral-padding;
-    > * {
+
+    >* {
       padding-right: 0;
     }
   }
+
   .timeline-content {
     display: flex;
     align-items: center;
+
     &-icon {
       display: flex;
       align-items: center;
@@ -85,10 +151,12 @@ page-tx-details {
       padding-left: 1rem;
       margin-right: 0.5rem;
       position: relative;
+
       img,
       .rejected {
         z-index: 12;
       }
+
       .line::before {
         content: '';
         background: #e8e8e8;
@@ -100,7 +168,8 @@ page-tx-details {
         transform: translateX(-50%) translateY(-100%);
         top: 0;
       }
-      > div {
+
+      >div {
         border: 3px solid color($colors, primary);
         border-radius: $icon-border-radius;
         display: flex;
@@ -113,6 +182,7 @@ page-tx-details {
         vertical-align: middle;
         color: color($colors, primary);
         z-index: 10;
+
         &.rejected {
           background: #e15061;
           border-color: #e15061;
@@ -122,18 +192,44 @@ page-tx-details {
         }
       }
     }
+
     &-label {
       flex-grow: 1;
-      > .action {
+
+      >.action {
         font-size: 16px;
+
         @media (max-width: 330px) {
           font-size: 14px;
         }
       }
-      > .name {
+
+      >.name {
         color: #aaa;
         font-size: 14px;
       }
     }
   }
+
+  .button-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    flex: 1;
+    margin: 15px;
+  }
+
+  .view-blockchain-button-container {
+    display: flex;
+    color: rgb(68, 99, 246);
+    align-items: center;
+    justify-content: center;
+    background-color: rgb(237, 240, 254);
+    width: 200px;
+    height: 47px;
+    border-radius: 30px;
+    align-self: center;
+  }
+
 }
