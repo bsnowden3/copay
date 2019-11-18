@@ -31,6 +31,10 @@
       <div class="subtitle-info">
         <span translate>It appears that you do not have any money to send.</span>
       </div>
+
+      <div class="subtitle-info" *ngIf="wallet.coin === 'xrp'">
+        <p translate> You'll need a minimum balance of 20 XRP to send funds.</p>
+      </div>
       <button ion-button class="button-standard" (click)="goToReceive()">
         {{'Add funds' | translate}}
       </button>
