@@ -66,7 +66,6 @@ import { CreateNewWalletPage } from '../pages/includes/create-new-wallet/create-
 import { FeedbackCardPage } from '../pages/includes/feedback-card/feedback-card';
 import { GravatarPage } from '../pages/includes/gravatar/gravatar';
 import { MultipleOutputsPage } from '../pages/includes/multiple-outputs/multiple-outputs';
-import { SurveyCardPage } from '../pages/includes/survey-card/survey-card';
 import { TxpPage } from '../pages/includes/txp/txp';
 
 /* Tabs */
@@ -210,7 +209,6 @@ export const PAGES = [
   SearchTxModalPage,
   SessionLogPage,
   SendFeedbackPage,
-  SurveyCardPage,
   FinishModalPage,
   NewDesignTourPage,
   TabsPage,
