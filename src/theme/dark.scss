@@ -87,6 +87,7 @@
   page-add-wallet,
   options-sheet {
     .bp-list ion-icon.item-img.icon.item-icon.icon-settings {
+
       &.icon-md,
       &.icon-ios {
         opacity: 1;
@@ -100,6 +101,7 @@
 
   page-local-theme {
     ion-content.add-bottom-safe-area {
+
       .fixed-content,
       .scroll-content {
         @include transition();
@@ -108,6 +110,7 @@
 
     ion-content.add-padding-bottom,
     .add-padding-bottom ion-content {
+
       .fixed-content,
       .scroll-content {
         @include transition();
@@ -125,6 +128,7 @@
     // Lists
     .bp-list.settings-list {
       .item {
+
         &.item-ios,
         &.item-md {
           @include transition();
@@ -185,18 +189,21 @@
     .tab-button[aria-selected='true'] {
       opacity: 1;
     }
+
     .tab-button[aria-selected='false'] {
       ion-icon {
+
         &[class*='tab-home'],
         &[class*='tab-wallets'],
         &[class*='tab-cards'],
         &[class*='tab-settings'] {
           opacity: 0.4;
         }
+
         &[class*='tab-scan'] {
-          background: url('../assets/img/tab-icons/tab-scan-dm.svg') no-repeat
-            50% 50%;
+          background: url('../assets/img/tab-icons/tab-scan-dm.svg') no-repeat 50% 50%;
         }
+
         &[class*='tab-copay-scan'] {
           filter: invert(0.4);
           opacity: 1;
@@ -225,6 +232,7 @@
   }
 
   .box-notification {
+
     &.success,
     &.info,
     &.warning,
@@ -278,6 +286,7 @@
     .alert-input {
       background: $bg-color-dark-theme;
     }
+
     .alert-message {
       color: $text-color-dark-theme;
     }
@@ -377,6 +386,7 @@
   // 3.1 Lists
   .bp-list {
     .item {
+
       &.item-ios,
       &.item-md {
         border: 0;
@@ -384,6 +394,7 @@
       }
 
       &:not(.create-button):not(.assertive) {
+
         &.item-ios,
         &.item-md {
           color: $text-color-dark-theme;
@@ -426,6 +437,7 @@
     &:hover,
     &:focus,
     &:active {
+
       &.button-md,
       &.button-ios {
         background-color: $bg-color-dark-theme-2;
@@ -435,6 +447,7 @@
 
     &:active,
     &.activated {
+
       &.button-md,
       &.button-ios {
         background-color: $bg-color-dark-theme-2;
@@ -515,20 +528,25 @@
 
   .offer-card {
     background: $bg-color-dark-theme-2;
+
     .main-label {
       color: $text-color-dark-theme;
     }
+
     .extended-info .bp-list {
       .item {
         background: $bg-color-dark-theme-2;
+
         &:not(:last-child) {
           border-top: 1px dashed #434d5a;
         }
       }
+
       .total {
         color: white;
       }
     }
+
     .terms {
       color: #8e8d8d;
     }
@@ -537,6 +555,7 @@
   // 3.4 - Expandable header
   ion-content.add-padding-bottom,
   .add-padding-bottom ion-content {
+
     .fixed-content,
     .scroll-content {
       background-color: $bg-color-dark-theme;
@@ -599,8 +618,10 @@
   }
 
   .toolbar {
+
     &.toolbar-md,
     &.toolbar-ios {
+
       .back-button,
       .close-container {
         background-color: $bg-color-dark-theme-2;
@@ -619,6 +640,7 @@
   page-bitpay-card,
   page-shapeshift-settings {
     .toolbar {
+
       &.toolbar-md,
       &.toolbar-ios {
         .back-button {
@@ -657,6 +679,7 @@
 
       .bp-list {
         .item {
+
           &.item-ios,
           &.item-md {
             background-color: $bg-color-dark-theme-2;
@@ -714,6 +737,7 @@
   }
 
   wallet-selector {
+
     .item-divider-md,
     .item-divider-ios {
       background-color: $bg-color-dark-theme-2;
@@ -758,6 +782,7 @@
         background-color: $bg-color-dark-theme;
 
         .item {
+
           &.item-ios,
           &.item-md {
             background: $bg-color-dark-theme;
@@ -769,18 +794,14 @@
   }
 
   page-slide-to-accept {
-    background: linear-gradient(
-      to bottom,
-      rgba(18, 18, 18, 0),
-      rgba(18, 18, 18, 1),
-      rgba(18, 18, 18, 1)
-    );
-    background: -webkit-linear-gradient(
-      to bottom,
-      rgba(18, 18, 18, 0),
-      rgba(18, 18, 18, 1),
-      rgba(18, 18, 18, 1)
-    );
+    background: linear-gradient(to bottom,
+        rgba(18, 18, 18, 0),
+        rgba(18, 18, 18, 1),
+        rgba(18, 18, 18, 1));
+    background: -webkit-linear-gradient(to bottom,
+        rgba(18, 18, 18, 0),
+        rgba(18, 18, 18, 1),
+        rgba(18, 18, 18, 1));
   }
 
   page-fingerprint {
@@ -804,74 +825,19 @@
         background-color: $bg-color-dark-theme;
       }
     }
+
     ion-content {
       background-color: $bg-color-dark-theme !important;
     }
+
     .pin-header {
       .title {
         color: $text-color-dark-theme;
       }
     }
+
     .content {
       background-color: $bg-color-dark-theme;
-    }
-  }
-
-  .clipboard-card {
-    background: $bg-color-dark-theme-message;
-
-    .item-divider {
-      background: $bg-color-dark-theme-message;
-      border-bottom: 1px solid $bg-color-dark-theme-2;
-    }
-
-    page-clipboard-card {
-      .clipboard-paypro-container {
-        background: $bg-color-dark-theme-message;
-        color: $text-color-dark-theme;
-
-        .item-inner {
-          background: $bg-color-dark-theme-message;
-          color: $text-color-dark-theme;
-          border-bottom: 1px solid $bg-color-dark-theme-2;
-        }
-
-        ion-note {
-          .amount {
-            color: $text-color-dark-theme;
-          }
-        }
-
-        .loader {
-          background-color: #666;
-
-          &:after {
-            background-color: #2b2a2a;
-          }
-
-          &.gradient {
-            background-image: linear-gradient(to right, #666, #2b2a2a);
-
-            &:after {
-              background-color: #2a2929;
-            }
-          }
-        }
-      }
-
-      .clipboard {
-        background: $bg-color-dark-theme-message;
-        color: $text-color-dark-theme;
-
-        ion-label {
-          background: $bg-color-dark-theme-2;
-          color: $text-color-dark-theme;
-        }
-
-        img {
-          border-right: 1px solid $bg-color-dark-theme-message;
-        }
-      }
     }
   }
 
@@ -892,6 +858,7 @@
     .bg-none {
       background-color: $bg-color-dark-theme;
     }
+
     .container {
       .content {
         .body {
@@ -909,45 +876,57 @@
     action-sheet {
       .action-sheet-bottom {
         background: $bg-color-dark-theme;
+
         .encrypt-password {
           .encrypt-password-info {
             .info {
               .title {
                 color: $text-color-dark-theme;
               }
+
               .text {
                 color: $text-color-dark-theme-2;
+
                 b {
                   color: $text-color-dark-theme;
                 }
               }
             }
           }
+
           .encrypt-password-form {
             .slide-title {
               color: $text-color-dark-theme;
             }
+
             form {
               ion-item {
                 background-color: $bg-color-dark-theme;
                 color: $text-color-dark-theme;
+
                 ion-label {
+
                   &.label-ios,
                   &.label-md {
                     color: $text-color-dark-theme-2;
                   }
                 }
+
                 ion-input {
+
                   input[type='password'],
                   input[type='text'] {
                     color: $text-color-dark-theme;
                   }
                 }
               }
+
               .item-inner {
                 border-bottom-color: $border-color-dark-theme !important;
               }
+
               button {
+
                 .ion-md-eye:before,
                 .ion-md-eye-off:before {
                   color: $text-color-dark-theme-2;
@@ -997,7 +976,7 @@
 
   // 5.2 - Tab Wallets
   page-wallets {
-    .collapse > .collapse-btn {
+    .collapse>.collapse-btn {
       background: $bg-color-dark-theme-2;
     }
 
@@ -1012,6 +991,7 @@
 
   page-txp {
     .item {
+
       &.item-ios,
       &.item-md {
         background-color: $bg-color-dark-theme-2;
@@ -1069,6 +1049,7 @@
     }
 
     .bp-list {
+
       .summary-item,
       .total-amount-note,
       .secondary-note {
@@ -1117,6 +1098,7 @@
 
     .wallet-info {
       .left-buttons {
+
         .encrypted,
         .testnet {
           filter: invert(1);
@@ -1158,7 +1140,7 @@
         &.warning-background {
           background-color: $bg-color-dark-theme-3;
 
-          ion-note.note > .amount > .received,
+          ion-note.note>.amount>.received,
           .action {
             color: color($colors, warning);
           }
@@ -1167,7 +1149,7 @@
         &.danger-background {
           background-color: $bg-color-dark-theme-3;
 
-          ion-note.note > .amount > .received,
+          ion-note.note>.amount>.received,
           .action {
             color: color($colors, danger);
           }
@@ -1234,8 +1216,7 @@
 
       .qr-container {
         .lines-background {
-          background: url(../assets/img/curved-lines-background.png) center
-            center no-repeat $bg-color-warning;
+          background: url(../assets/img/curved-lines-background.png) center center no-repeat $bg-color-warning;
           opacity: 0.1;
         }
       }
@@ -1339,11 +1320,9 @@
 
   buy-card-page {
     .amount-box {
-      background-image: linear-gradient(
-        -180deg,
-        $bg-color-dark-theme 30%,
-        $gradient-dark-theme 100%
-      );
+      background-image: linear-gradient(-180deg,
+          $bg-color-dark-theme 30%,
+          $gradient-dark-theme 100%);
 
       .discount-header {
         background-color: $bg-color-dark-theme-2;
@@ -1402,6 +1381,7 @@
     }
 
     .body {
+
       &__title,
       &__subtitle {
         color: $text-color-dark-theme;
@@ -1453,6 +1433,7 @@
       }
 
       ion-icon.item-img.icon {
+
         &.icon-md.item-icon,
         &.icon-ios.item-icon {
           &.ionic-icon {
@@ -1474,6 +1455,7 @@
   page-wallet-addresses,
   page-wallet-settings {
     .bp-list.settings-list {
+
       ion-item.item,
       button.item {
         .item-inner {
@@ -1523,7 +1505,7 @@
   card-details-page {
     background-color: $bg-color-dark-theme;
 
-    .gift-card-content .scroll-content > div.wrapper {
+    .gift-card-content .scroll-content>div.wrapper {
       background-color: $bg-color-dark-theme;
     }
 
@@ -1569,6 +1551,7 @@
       background-color: $bg-color-dark-theme;
     }
   }
+
   page-simplex,
   page-wyre {
     .buy-crypto-button {
@@ -1613,9 +1596,11 @@
   page-create-eth-multisig {
     .multisig-input {
       background-color: $bg-color-dark-theme;
+
       .search-wrapper {
         background-color: $bg-color-dark-theme-2;
         color: $text-color-dark-theme-2;
+
         &.invalid {
           border: 1px solid color($colors, error);
           color: color($colors, error);
@@ -1649,10 +1634,12 @@
   }
 
   phone-page {
+
     ion-item,
     ion-item.item-toggle ion-label {
       background: $bg-color-dark-theme;
     }
+
     .phone-input {
       color: white;
       $phone-input-border-color-dark-theme: rgba(255, 255, 255, 0.4);
@@ -1689,11 +1676,9 @@
   page-key-onboarding {
     .key-onboarding-slides {
       ion-slide {
-        background: linear-gradient(
-          to bottom,
-          $bg-color-dark-theme,
-          $gradient-dark-theme 80%
-        );
+        background: linear-gradient(to bottom,
+            $bg-color-dark-theme,
+            $gradient-dark-theme 80%);
       }
 
       .slide-info {
@@ -1739,9 +1724,10 @@
     }
 
     .key-container,
-    .grid-container > .key-container {
+    .grid-container>.key-container {
+
       .word-container,
-      .word-container > .word-slides {
+      .word-container>.word-slides {
         .word-title {
           color: $text-color-dark-theme;
         }
@@ -1757,7 +1743,7 @@
       }
     }
 
-    .grid-container > .mnemonic-words-container {
+    .grid-container>.mnemonic-words-container {
       .mnemonic-words {
         .words {
           .button {
@@ -1835,10 +1821,13 @@
     .bp-list {
       .card {
         background: $bg-color-dark-theme;
+
         .item {
+
           &.item-ios,
           &.item-md {
             background-color: $bg-color-dark-theme-2;
+
             ion-note {
               img {
                 filter: brightness(0.5);
@@ -1849,11 +1838,13 @@
       }
     }
   }
+
   page-crypto-payment-method {
     .item-img img {
       filter: brightness(0.5);
     }
   }
+
   page-crypto-offers {
     .bp-list {
       .summary-description {
@@ -1861,12 +1852,14 @@
       }
     }
   }
+
   page-crypto-coin-selector {
     .bp-list {
       .available-wallets {
         &-container {
           background-color: $bg-color-dark-theme-2;
         }
+
         &-label {
           color: $text-color-dark-theme-2;
         }
@@ -1874,71 +1867,9 @@
     }
   }
 
-  // Onboarding
-  page-feature-education,
-  page-key-creation,
-  page-recovery-key,
-  page-lock-method {
-    .onboarding-slides ion-slide .slide-zoom .slide-info,
-    .key-creation-info,
-    .recovery-key-info,
-    .lock-method-info {
-      .info {
-        .title {
-          color: $text-color-dark-theme;
-        }
-        .text {
-          color: $text-color-dark-theme-2;
-        }
-        .note {
-          color: $text-color-dark-theme-3;
-        }
-      }
-    }
-  }
-  page-disclaimer {
-    .checkbox-list {
-      .term-container {
-        background-color: $bg-color-dark-theme-2;
-        .term {
-          &-title {
-            color: $text-color-dark-theme;
-          }
-          &-note {
-            color: $text-color-dark-theme-2;
-          }
-        }
-      }
-      .term-container.bg-none {
-        .term-note {
-          color: $text-color-dark-theme;
-        }
-      }
-      .checkbox-icon {
-        border-color: $bg-color-dark-theme-3;
-      }
-    }
-    .disclaimer-footer {
-      background-color: $bg-color-dark-theme;
-    }
-  }
-  page-add-funds {
-    ion-list {
-      .option-container {
-        background-color: $bg-color-dark-theme-2;
-        box-shadow: none;
-        .info {
-          .title {
-            color: $text-color-dark-theme;
-          }
-          .note {
-            color: $text-color-dark-theme-2;
-          }
-        }
-      }
-    }
-    .disclaimer-footer {
-      background-color: $bg-color-dark-theme;
+  ion-col {
+    .ellipsis {
+      color: $text-color-dark-theme;
     }
   }
 }

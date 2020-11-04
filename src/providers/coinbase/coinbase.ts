@@ -12,7 +12,7 @@ import { PersistenceProvider } from '../persistence/persistence';
 import { PlatformProvider } from '../platform/platform';
 import { RateProvider } from '../rate/rate';
 
-import { CurrencyProvider } from '../currency/currency';
+import { Coin, CurrencyProvider } from '../currency/currency';
 
 import * as _ from 'lodash';
 
@@ -767,12 +767,19 @@ export class CoinbaseProvider {
   public getAvailableAccounts(coin?, minFiatCurrency?: { amount; currency }) {
     let coinbaseData = _.cloneDeep(this.coinbaseData);
     let coinbaseAccounts = coinbaseData.accounts.filter(ac => {
-      ac.nativeCurrencyStr =
-        this.getNativeCurrencyBalance(ac.balance.amount, ac.balance.currency) +
-        ' ' +
-        this.coinbaseData['user']['native_currency'];
+      const nativeBalance = this.getNativeCurrencyBalance(
+        ac.balance.amount,
+        ac.balance.currency
+      );
+      ac.nativeCurrencyStr = nativeBalance
+        ? nativeBalance + ' ' + this.coinbaseData['user']['native_currency']
+        : null;
       const accountCoin = ac.balance.currency.toLowerCase();
       if (minFiatCurrency) {
+        // check if it's crypto currency
+        if (Coin[minFiatCurrency.currency]) {
+          return Coin[minFiatCurrency.currency] == accountCoin;
+        }
         const availableBalanceFiat = this.rateProvider.toFiat(
           this.currencyProvider.getPrecision(accountCoin).unitToSatoshi *
             Number(ac.balance.amount),
