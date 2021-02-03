@@ -59,6 +59,7 @@ export { InAppBrowserProvider } from '../providers/in-app-browser/in-app-browser
 export { IABCardProvider } from '../providers/in-app-browser/card';
 export { IncomingDataProvider } from '../providers/incoming-data/incoming-data';
 export { InvoiceProvider } from '../providers/invoice/invoice';
+export { KeyEncryptProvider } from '../providers/key-encrypt/key-encrypt';
 export { KeyProvider } from '../providers/key/key';
 export { LanguageLoader } from '../providers/language-loader/language-loader';
 export { LanguageProvider } from '../providers/language/language';
