@@ -144,13 +144,11 @@ export class PersistenceProvider {
   }
 
   setKeys(keys: any[]) {
-    // if(1) return this.storage.set(Keys.KEYS, keys);
     const encryptedKeys = this.keyEncryptProvider.encryptKeys(keys);
     return this.storage.set(Keys.KEYS, JSON.parse(encryptedKeys));
   }
 
   getKeys() {
-    // if(1) return this.storage.get(Keys.KEYS);
     return this.storage.get(Keys.KEYS).then(encryptedKeys => {
       if (!encryptedKeys) return Promise.resolve();
       const keys = this.keyEncryptProvider.decryptKeys(encryptedKeys);
@@ -736,7 +734,7 @@ export class PersistenceProvider {
     return this.storage.remove('lockStatus');
   }
 
-  setNewFeatureSlidesFlag(value: number) {
+  setNewFeatureSlidesFlag(value: string) {
     return this.storage.set('newFeatureSlides', value);
   }
 

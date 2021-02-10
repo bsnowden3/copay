@@ -19,6 +19,8 @@ import { KeyEncryptProvider } from '../../providers/key-encrypt/key-encrypt';
 import { LanguageProvider } from '../../providers/language/language';
 import { Logger } from '../../providers/logger/logger';
 import { PersistenceProvider } from '../../providers/persistence/persistence';
+import { FileStorage } from '../../providers/persistence/storage/file-storage';
+import { LocalStorage } from '../../providers/persistence/storage/local-storage';
 import { PlatformProvider } from '../platform/platform';
 import { ThemeProvider } from '../theme/theme';
 import { AppProvider } from './app';
@@ -49,6 +51,8 @@ describe('AppProvider', () => {
         Events,
         PersistenceProvider,
         KeyEncryptProvider,
+        FileStorage,
+        LocalStorage,
         PlatformProvider,
         ThemeProvider,
         BwcProvider,

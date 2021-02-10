@@ -149,35 +149,42 @@ export class HomePage {
     if (!disclaimerAccepted) {
       // first time using the App -> don't show
       this.persistenceProvider.setNewFeatureSlidesFlag(
-        this.appProvider.version.major
+        this.appProvider.version.major + '.' + this.appProvider.version.minor
       );
       return;
     }
     this.persistenceProvider.getNewFeatureSlidesFlag().then(value => {
-      if (!value || value !== this.appProvider.version.major) {
-        const feature_list = this.newFeatureData.get();
-        if (feature_list && feature_list.features.length > 0) {
-          const modal = this.modalCtrl.create(NewFeaturePage, {
-            featureList: feature_list
-          });
-          modal.present();
-          modal.onDidDismiss(data => {
-            if (data) {
-              if (typeof data === 'boolean' && data === true) {
-                this.persistenceProvider.setNewFeatureSlidesFlag(
-                  this.appProvider.version.major
-                );
-              } else if (typeof data !== 'boolean') {
-                this.events.publish('IncomingDataRedir', data);
+      if (
+        !value ||
+        String(value) !==
+          this.appProvider.version.major + '.' + this.appProvider.version.minor
+      ) {
+        this.newFeatureData.get().then(feature_list => {
+          if (feature_list && feature_list.features.length > 0) {
+            const modal = this.modalCtrl.create(NewFeaturePage, {
+              featureList: feature_list
+            });
+            modal.present();
+            modal.onDidDismiss(data => {
+              if (data) {
+                if (typeof data === 'boolean' && data === true) {
+                  this.persistenceProvider.setNewFeatureSlidesFlag(
+                    this.appProvider.version.major +
+                      '.' +
+                      this.appProvider.version.minor
+                  );
+                } else if (typeof data !== 'boolean') {
+                  this.events.publish('IncomingDataRedir', data);
+                }
+                this.events.unsubscribe('Local/showNewFeaturesSlides');
               }
-              this.events.unsubscribe('Local/showNewFeaturesSlides');
-            }
-          });
-        } else {
-          this.persistenceProvider.setNewFeatureSlidesFlag(
-            this.appProvider.info.version
-          );
-        }
+            });
+          } else {
+            this.persistenceProvider.setNewFeatureSlidesFlag(
+              this.appProvider.info.version
+            );
+          }
+        });
       }
     });
   }
@@ -758,7 +765,9 @@ export class HomePage {
   }
 
   public goToAmountPage() {
-    this.analyticsProvider.logEvent('buy_crypto_button_clicked', {});
+    this.analyticsProvider.logEvent('buy_crypto_button_clicked', {
+      from: 'homePage'
+    });
     this.navCtrl.push(AmountPage, {
       fromBuyCrypto: true,
       nextPage: 'CryptoOrderSummaryPage',
@@ -767,7 +776,9 @@ export class HomePage {
   }
 
   public goToExchangeCryptoPage() {
-    this.analyticsProvider.logEvent('exchange_crypto_button_clicked', {});
+    this.analyticsProvider.logEvent('exchange_crypto_button_clicked', {
+      from: 'homePage'
+    });
     this.navCtrl.push(ExchangeCryptoPage, {
       currency: this.configProvider.get().wallet.settings.alternativeIsoCode
     });
