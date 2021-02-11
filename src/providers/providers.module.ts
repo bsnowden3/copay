@@ -134,6 +134,7 @@ import {
     FCMNG,
     HomeIntegrationsProvider,
     HttpRequestsProvider,
+    NewFeatureData,
     IABCardProvider,
     InAppBrowserProvider,
     FeeProvider,
@@ -186,8 +187,7 @@ import {
     DecimalPipe,
     PersistenceProvider,
     File,
-    CardPhasesProvider,
-    NewFeatureData
+    CardPhasesProvider
   ]
 })
 export class ProvidersModule {}

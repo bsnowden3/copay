@@ -43,7 +43,7 @@
 
 //     it('should run init without errors if no encrypting keys found and not modified any key', async () => {
 //       keyEncryptProvider.STORAGE_ENCRYPTING_KEYS = [];
-//       await localStorage.set('keys', { key: 'key1' });
+//       await localStorage.set('keys', [{ key: 'key1' }]);
 //       await keyEncryptProvider.init();
 //       expect(loggerSpy).toHaveBeenCalledWith(
 //         'Running key encrypt provider init function'
@@ -52,7 +52,7 @@
 //         'KeyEncryptProvider - no encrypting keys'
 //       );
 //       let keys = await localStorage.get('keys');
-//       expect(keys).toEqual({ key: 'key1' });
+//       expect(keys).toEqual([{ key: 'key1' }]);
 //     });
 
 //     it('should show an error if could not decrypt', async () => {
@@ -62,7 +62,7 @@
 //       ];
 //       const encryptedKeys = BWC.sjcl.encrypt(
 //         'agksdfkjg234587asdjkhfdsakhjg283',
-//         JSON.stringify({ key: 'key1' })
+//         JSON.stringify([{ key: 'key1' }])
 //       );
 //       spyOn(localStorage, 'get').and.returnValue(
 //         Promise.resolve(JSON.parse(encryptedKeys))
@@ -71,6 +71,14 @@
 //       expect(loggerSpy).toHaveBeenCalledWith(
 //         'Running key encrypt provider init function'
 //       );
+//       keyEncryptProvider.STORAGE_ENCRYPTING_KEYS.forEach(value => {
+//         const storageEncryptingKeyHash = BWC.Bitcore.crypto.Hash.sha256(
+//           Buffer.from(value)
+//         ).toString('hex');
+//         expect(loggerSpy).toHaveBeenCalledWith(
+//           `Trying to decrypt with: ${storageEncryptingKeyHash}`
+//         );
+//       });
 //       expect(loggerSpy).toHaveBeenCalledWith(
 //         'Could not decrypt storage. Tested 2 keys without success'
 //       );
@@ -80,38 +88,12 @@
 //       );
 //     });
 
-//     it('should show an error if no valid json', async () => {
-//       keyEncryptProvider.STORAGE_ENCRYPTING_KEYS = [
-//         'poiqwerlkhjkasdfgiuwerhjabsdfgks'
-//       ];
-//       const encryptedKeys = BWC.sjcl.encrypt(
-//         'agksdfkjg234587asdjkhfdsakhjg283',
-//         JSON.stringify({ key: 'key1' })
-//       );
-//       spyOn(localStorage, 'get').and.returnValue(
-//         Promise.resolve(encryptedKeys)
-//       );
-//       await keyEncryptProvider.init();
-//       expect(loggerSpy).toHaveBeenCalledWith(
-//         'Running key encrypt provider init function'
-//       );
-//       expect(loggerSpy).toHaveBeenCalledWith(
-//         'Could not decrypt storage. Tested 1 keys without success'
-//       );
-//       expect(loggerErrSpy).toHaveBeenCalledWith(
-//         "json decode: this isn't json!"
-//       );
-//       expect(keyEncryptProvider.keyEncryptionErr.message).toEqual(
-//         'Your wallet is in a corrupt state. Please contact support and share the logs provided.'
-//       );
-//     });
-
 //     it('should encrypt keys that are not yet encrypted', async () => {
 //       keyEncryptProvider.STORAGE_ENCRYPTING_KEYS = [
 //         'asdfghjklpoiuytrewqazxcvbnjskawq'
 //       ];
 //       const spy = spyOn(localStorage, 'get').and.returnValue(
-//         Promise.resolve({ key: 'key1' })
+//         Promise.resolve([{ key: 'key1' }])
 //       );
 //       await keyEncryptProvider.init();
 //       expect(loggerSpy).toHaveBeenCalledWith(
@@ -124,13 +106,21 @@
 //       expect(loggerSpy).toHaveBeenCalledWith(
 //         'Storage encrypted with key number: 1'
 //       );
+//       keyEncryptProvider.STORAGE_ENCRYPTING_KEYS.forEach(value => {
+//         const storageEncryptingKeyHash = BWC.Bitcore.crypto.Hash.sha256(
+//           Buffer.from(value)
+//         ).toString('hex');
+//         expect(loggerSpy).toHaveBeenCalledWith(
+//           `Trying to decrypt with: ${storageEncryptingKeyHash}`
+//         );
+//       });
 //       spy.and.callThrough();
 //       const keys = await localStorage.get('keys');
 //       const decryptedKeys = BWC.sjcl.decrypt(
 //         'asdfghjklpoiuytrewqazxcvbnjskawq',
 //         JSON.stringify(keys)
 //       );
-//       expect(JSON.parse(decryptedKeys)).toEqual({ key: 'key1' });
+//       expect(JSON.parse(decryptedKeys)).toEqual([{ key: 'key1' }]);
 //     });
 
 //     it('should try to decrypt keys with all encrypting keys till find the correct one and encrypt with the last one', async () => {
@@ -141,7 +131,7 @@
 //       ];
 //       const encryptedKeys = BWC.sjcl.encrypt(
 //         'poiqwerlkhjkasdfgiuwerhjabsdfgks',
-//         JSON.stringify({ key: 'key1' })
+//         JSON.stringify([{ key: 'key1' }])
 //       );
 //       let spy = spyOn(localStorage, 'get').and.returnValue(
 //         Promise.resolve(JSON.parse(encryptedKeys))
@@ -156,13 +146,26 @@
 //       expect(loggerSpy).toHaveBeenCalledWith(
 //         `Storage encrypted with key number: ${keyEncryptProvider.STORAGE_ENCRYPTING_KEYS.length}`
 //       );
+//       const storageEncryptingKeyHash1 = BWC.Bitcore.crypto.Hash.sha256(
+//         Buffer.from(keyEncryptProvider.STORAGE_ENCRYPTING_KEYS[0])
+//       ).toString('hex');
+//       expect(loggerSpy).toHaveBeenCalledWith(
+//         `Trying to decrypt with: ${storageEncryptingKeyHash1}`
+//       );
+
+//       const storageEncryptingKeyHash2 = BWC.Bitcore.crypto.Hash.sha256(
+//         Buffer.from(keyEncryptProvider.STORAGE_ENCRYPTING_KEYS[0])
+//       ).toString('hex');
+//       expect(loggerSpy).toHaveBeenCalledWith(
+//         `Trying to decrypt with: ${storageEncryptingKeyHash2}`
+//       );
 //       spy.and.callThrough();
 //       const keys = await localStorage.get('keys');
 //       const decryptedKeys = BWC.sjcl.decrypt(
 //         'asdfghjklpoiuytrewqazxcvbnjskawq',
 //         JSON.stringify(keys)
 //       );
-//       expect(JSON.parse(decryptedKeys)).toEqual({ key: 'key1' });
+//       expect(JSON.parse(decryptedKeys)).toEqual([{ key: 'key1' }]);
 //     });
 //   });
 
@@ -173,12 +176,12 @@
 //       ];
 //       const encryptedKeys = BWC.sjcl.encrypt(
 //         'agksdfkjg234587asdjkhfdsakhjg283',
-//         JSON.stringify({ key: 'key1' })
+//         JSON.stringify([{ key: 'key1' }])
 //       );
 //       const decryptedKeys = keyEncryptProvider.decryptKeys(
 //         JSON.parse(encryptedKeys)
 //       );
-//       expect(JSON.parse(decryptedKeys)).toEqual({ key: 'key1' });
+//       expect(JSON.parse(decryptedKeys)).toEqual([{ key: 'key1' }]);
 //       expect(loggerSpy).toHaveBeenCalledWith(
 //         'Storage decrypted successfully with key number: 1'
 //       );
@@ -188,12 +191,12 @@
 //       keyEncryptProvider.STORAGE_ENCRYPTING_KEYS = [
 //         'agksdfkjg234587asdjkhfdsakhjg283'
 //       ];
-//       const encryptedKeys = keyEncryptProvider.encryptKeys({ key: 'key1' });
+//       const encryptedKeys = keyEncryptProvider.encryptKeys([{ key: 'key1' }]);
 //       const decryptedKeys = BWC.sjcl.decrypt(
 //         'agksdfkjg234587asdjkhfdsakhjg283',
 //         encryptedKeys
 //       );
-//       expect(JSON.parse(decryptedKeys)).toEqual({ key: 'key1' });
+//       expect(JSON.parse(decryptedKeys)).toEqual([{ key: 'key1' }]);
 //       expect(loggerSpy).toHaveBeenCalledWith(
 //         'Storage encrypted successfully with key number: 1'
 //       );

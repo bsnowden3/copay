@@ -74,6 +74,12 @@ export class KeyEncryptProvider {
     let decryptedKeys;
     privateProps.get(this).STORAGE_ENCRYPTING_KEYS.every((value, index) => {
       try {
+        const storageEncryptingKeyHash = BWC.Bitcore.crypto.Hash.sha256(
+          Buffer.from(value)
+        ).toString('hex');
+        this.logger.debug(
+          `Trying to decrypt with: ${storageEncryptingKeyHash}`
+        );
         decryptedKeys = BWC.sjcl.decrypt(value, keys);
         this.logger.debug(`Storage decrypted with key number: ${index + 1}`);
         return false; // break;
@@ -88,18 +94,18 @@ export class KeyEncryptProvider {
               privateProps.get(this).STORAGE_ENCRYPTING_KEYS.length
             } keys without success`
           );
-          if (err && err.message == "json decode: this isn't json!") {
-            this.logger.error(err.message);
-            throw new Error(
-              'Your wallet is in a corrupt state. Please contact support and share the logs provided.'
-            );
-          } else if (err && err.message == "ccm: tag doesn't match") {
+          if (err && err.message == "ccm: tag doesn't match") {
             this.logger.error(err.message);
             throw new Error(
               'This version is not compatible with your storage, please update to the most recent version or contact support and share the logs provided.'
             );
-          } else {
+          } else if (err && err.message == "json decode: this isn't json!") {
             this.logger.debug('Not yet encrypted?');
+            // TODO ??
+            // this.logger.error(err.message);
+            // throw new Error(
+            //   'Your wallet is in a corrupt state. Please contact support and share the logs provided.'
+            // );
           }
         }
         return true; // continue;
